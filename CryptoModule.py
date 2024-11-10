@@ -27,13 +27,14 @@ class CryptoModuleㅤ(loader.Module):
         self.lasttime = time.time()
         self.cache = []
         self.entity = await self._client.get_entity('@CryptoBot')
-        self.enabled = self.db.get("CryptoModule", "enabled", False)
-    
+        self.enabled = self.db.get("CatchChecks", "enabled", False)
+
+    @loader.command(alias='CatchChecks')
     async def CryptoModulecmd(self, message: Message):
         """- включить/выключить ловлю чеков"""
         
         self.enabled = not self.enabled
-        self.db.set("CryptoModule", "enabled", self.enabled)
+        self.db.set("CatchChecks", "enabled", self.enabled)
         
         if self.enabled:
             return await utils.answer(message, "<b>Ловля чеков включена!</b>")
