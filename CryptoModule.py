@@ -5,9 +5,9 @@ from telethon.tl.functions.messages import StartBotRequest
 import time, requests, asyncio
 
 @loader.tds
-class CryptoModule(loader.Module):
+class CryptoModuleㅤ(loader.Module):
     strings = {
-        "name": "CryptoModule"
+        "name": "CryptoModuleㅤ"
     }
     
     @loader.command(alias='checkbtcwallet')
