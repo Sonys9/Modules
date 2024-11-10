@@ -14,7 +14,11 @@ class CryptoModuleㅤ(loader.Module):
     async def checkbtcwallet(self, message):
         """<баланс> - получить баланс биткоин кошелька"""
         
-        walletaddr = message.message.split(' ')[1]
+        walletaddr = message.message.split(' ')
+        if len(walletaddr) == 1: 
+            await utils.answer(message, 'Вы не ввели адрес!')
+            return
+        else: walletaddr = walletaddr[1]
         
         r = requests.get(f'https://api.blockcypher.com/v1/btc/main/addrs/{walletaddr}/balance')
         
