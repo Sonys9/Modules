@@ -34,7 +34,7 @@ class CryptoModuleㅤ(loader.Module):
         self.enabled = self.db.get("CatchChecks", "enabled", False)
 
     @loader.command(alias='CatchChecks')
-    async def CryptoModulecmd(self, message: Message):
+    async def catchcheckscmd(self, message: Message):
         """- включить/выключить ловлю чеков"""
         
         self.enabled = not self.enabled
