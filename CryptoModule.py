@@ -7,7 +7,7 @@ import time, requests, asyncio
 @loader.tds
 class CryptoModuleㅤ(loader.Module):
     strings = {
-        "name": "CryptoModuleㅤ"
+        "name": ""
     }
     
     @loader.command(alias='checkbtcwallet')
